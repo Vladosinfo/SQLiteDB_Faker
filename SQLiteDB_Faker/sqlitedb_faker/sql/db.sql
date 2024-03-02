@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS students;
 CREATE TABLE students (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_name VARCHAR(40) UNIQUE NOT NULL,
-    student_surname VARCHAR(40) UNIQUE NOT NULL,
+    -- student_surname VARCHAR(40) UNIQUE NOT NULL,
     group_id INTEGER,
     FOREIGN KEY (group_id) REFERENCES groups (id)
         ON DELETE CASCADE
@@ -35,9 +35,9 @@ CREATE TABLE students_subjects (
 DROP TABLE IF EXISTS grades;
 CREATE TABLE grades (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    grade VARCHAR(40) UNIQUE NOT NULL,
+    grade VARCHAR(40) NOT NULL,
     date_of DATE NOT NULL,
-    student_subject_id INTEGER,
+    student_subject_id INTEGER NOT NULL,
     FOREIGN KEY (student_subject_id) REFERENCES students_subjects (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -47,17 +47,21 @@ CREATE TABLE grades (
 DROP TABLE IF EXISTS subjects;
 CREATE TABLE subjects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    subjects_name VARCHAR(40) UNIQUE NOT NULL
+    subjects_name VARCHAR(40) UNIQUE NOT NULL,
+    teacher_id INTEGER NOT NULL,
+    FOREIGN KEY (teacher_id) REFERENCES teachers (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 -- Table: teachers
 DROP TABLE IF EXISTS teachers;
 CREATE TABLE teachers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    teacher_name VARCHAR(40) UNIQUE NOT NULL,
-    teacher_surname VARCHAR(40) UNIQUE NOT NULL,
-    subject_teacher_id INTEGER,
-    FOREIGN KEY (subject_teacher_id) REFERENCES subjects (id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    teacher_name VARCHAR(40) UNIQUE NOT NULL
+    -- teacher_surname VARCHAR(40) UNIQUE NOT NULL,
+    -- subject_teacher_id INTEGER,
+    -- FOREIGN KEY (subject_teacher_id) REFERENCES subjects (id)
+    --     ON DELETE CASCADE
+    --     ON UPDATE CASCADE
 );
