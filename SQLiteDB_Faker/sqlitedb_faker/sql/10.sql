@@ -1,4 +1,4 @@
--- A list of courses taught to a particular student by a particular instructor.
+-- A list of courses taught to a particular student by a particular teacher.
 SELECT s.subjects_name, st.student_name, t.teacher_name 
 FROM subjects s 
 LEFT JOIN teachers t ON t.id = s.teacher_id 

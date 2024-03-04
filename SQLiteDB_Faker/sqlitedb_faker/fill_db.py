@@ -69,8 +69,8 @@ def prepare_data(studs, groups, subjects, teachers, grades):
         for_teachers.append((teacher, ))  
 
     for_students_subjects = []
-    for subj_id in range(NUMBER_SUBJECT):
-        for stud_id in range(NUMBER_STUDENT):
+    for subj_id in range(1, NUMBER_SUBJECT + 1):
+        for stud_id in range(1, NUMBER_STUDENT + 1):
             for_students_subjects.append((stud_id, subj_id))
 
     # num variations of students - subjects
@@ -80,7 +80,7 @@ def prepare_data(studs, groups, subjects, teachers, grades):
         for _ in range(randint(15, NUMBER_GRADES)):
             for_grades.append((randint(1, 5), 
                                fake.date_between_dates(date_start=datetime(2022,9,1), date_end=datetime(2023,5,31))
-                               , num_var))
+                               , num_var+1))
             
     return for_students, for_groups, for_subjects, for_teachers, for_grades, for_students_subjects
         
